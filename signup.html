@@ -1,0 +1,168 @@
+ <?php 
+	// require "functions.php";
+
+ 	// to connect to server and database
+
+	$con = mysqli_connect('localhost','root','','holarex_db');
+
+	// check if something was posted
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+
+	// grab what we want to post to database
+
+		$username = addslashes($_POST['username']);
+		$email = addslashes($_POST['email']);
+		$password = addslashes($_POST['password']);
+		$date = date('Y-m-d H:i:s');
+
+		$query = "insert into users (username,email,password,date) values ('$username', '$email', '$password', '$date')";
+
+		$result = mysqli_query($con, $query);
+
+		// redirect to login page
+		header("Location: login.php");
+		die;
+	} 
+	
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Signup - My Website</title>
+</head>
+<body>
+
+	<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Holarex Digitals</h1><span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.php#hero" class="active">Home</a></li>
+          <li><a href="index.php#about">About</a></li>
+          <li><a href="index.php#services">Services</a></li>
+          <li><a href="index.php#portfolio">Portfolio</a></li>
+          <li><a href="index.php#pricing">Pricing</a></li>
+          <!-- <li><a href="index.php#team">Team</a></li> -->
+          <li><a href="blog.php">Blog</a></li>
+          <li class="dropdown"><a href="#"><span>Templates</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+          <li><a href="index.php#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="login.php">Login</a> 
+      <a class="btn-getstarted" href="index.php#about">Get Started</a>
+
+    </div>
+  </header>
+
+		<div style="margin: auto; max-width: 600px;">
+
+			<h2 style="text-align: centrer;">Signup</h2>
+
+			<form method="post" style="margin: auto; padding: 10px;">
+				
+				<input type="text" name="username" placeholder="Username" required><br>
+				<input type="email" name="email" placeholder="Email" required><br>
+				<input type="password" name="password" placeholder="Password" required><br>
+
+				<button>Signup</button>
+			</form>
+		</div>
+
+	<footer id="footer" class="footer position-relative light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Holarex Digitals</span>
+          </a>
+          <p>We specialize in Web Design, WordPress Solutions, Graphics Design, Animation, Software Development, UI/UX Design, Data Analysis, and Web Training. Each service is tailored to meet your specific business needs.</p>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+            <li><a href="#">Data Analysis</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>Opposite African Child College</p>
+          <p>Byazhin Across, Kubwa, FCT-Abuja</p>
+          <p>Nigeria</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+234 904 7090 181</span></p>
+          <p><strong>Email:</strong> <span>holarexcomputer@gmail.com</span></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright <?php echo date("Y")?> </span> <strong class="sitename">Holarex Digitals</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="https://bootstrapmade.com/">Engr. Olaniyi Kadiri</a>
+      </div>
+    </div>
+
+  </footer>
+
+	
+
+</body>
+</html>
